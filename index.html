@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoIA: O Futuro do Planeta</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            margin-bottom: 25px;
+        }
+
+        .node-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #f1c40f;
+        }
+
+        .node-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-restart {
+            background: #e67e22;
+            margin-top: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .btn-restart:hover {
+            background: #f39c12;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>EcoIA: Guardiões do Planeta</h1>
+        <p class="subtitle">Escolha o caminho tecnológico para salvar a Terra usando Inteligência Artificial</p>
+        
+        <div id="game-content">
+            <h2 id="title" class="node-title">Carregando...</h2>
+            <p id="text" class="node-text"></p>
+            <div id="options" class="options-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const story = {
+            start: {
+                title: "O Desafio Global",
+                text: "Você assumiu o comando da Aliança de Tecnologia Ambiental. Vários ecossistemas estão em estado de emergência. Onde você vai aplicar o poder da IA primeiro?",
+                options: [
+                    { text: "🌲 Proteger as Florestas Tropicais", nextNode: "florestas" },
+                    { text: "🌊 Limpar e Monitorar os Oceanos", nextNode: "oceanos" },
+                    { text: "🏙️ Otimizar Cidades e Energia", nextNode: "cidades" }
+                ]
+            },
+            
+            florestas: {
+                title: "Emergência nas Florestas",
+                text: "A Amazônia enfrenta desmatamento ilegal e riscos de incêndios. Como a IA pode atuar?",
+                options: [
+                    { text: "📡 IA + Imagens de Satélite (Prevenção)", nextNode: "florestas_satelite" },
+                    { text: "🚁 Drones Autônomos com IA (Reflorestamento)", nextNode: "florestas_drones" }
+                ]
+            },
+            florestas_satelite: {
+                title: "Sucesso: Visão Computacional!",
+                text: "Sua IA analisa dados de satélite em tempo real, prevendo áreas de risco de queimadas e desmatamento ilegal antes mesmo que aconteçam. Milhares de hectares foram salvos! 🌳",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            },
+            florestas_drones: {
+                title: "Sucesso: Bio-Drones em Ação!",
+                text: "Você lançou drones guiados por IA que mapeiam o solo e plantam até 40.000 sementes por dia nas áreas devastadas! 🍃",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            },
+
+            oceanos: {
+                title: "Crise nos Oceanos",
+                text: "Toneladas de plástico flutuam no mar e a vida marinha está em perigo. Qual tecnologia adotar?",
+                options: [
+                    { text: "🛰️ IA para Mapeamento de Lixo Marinho", nextNode: "oceanos_lixo" },
+                    { text: "🤖 Submarinos autônomos para restauração de corais", nextNode: "oceanos_corais" }
+                ]
+            },
+            oceanos_lixo: {
+                title: "Sucesso: Oceanos Limpos!",
+                text: "A IA rastreou correntes marítimas e manchas de plástico, guiando navios recolhedores que retiraram toneladas de poluição dos oceanos! 🐋",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            },
+            oceanos_corais: {
+                title: "Sucesso: Restauração Marinha!",
+                text: "Robôs guiados por IA monitoraram a temperatura da água e cultivaram novas colônias de corais resistentes às mudanças climáticas! 🪸",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            },
+
+            cidades: {
+                title: "Transição Urbana Sustentável",
+                text: "As grandes cidades consomem muita energia e geram altos níveis de poluição. Como intervir?",
+                options: [
+                    { text: "⚡ Smart Grids (Redes Elétricas Inteligentes)", nextNode: "cidades_grid" },
+                    { text: "♻️ IA para Otimização de Reciclagem", nextNode: "cidades_lixo" }
+                ]
+            },
+            cidades_grid: {
+                title: "Sucesso: Energia Limpa!",
+                text: "A IA equilibrou a demanda de energia com fontes renováveis (solar e eólica), reduzindo drasticamente as emissões de carbono! ☀️",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            },
+            cidades_lixo: {
+                title: "Sucesso: Economia Circular!",
+                text: "Braços robóticos com visão computacional aceleraram a triagem do lixo, aumentando a taxa de reciclagem da cidade em 90%! 📦",
+                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
+            }
+        };
+
+        function showNode(nodeKey) {
+            const node = story[nodeKey];
+            document.getElementById('title').innerText = node.title;
+            document.getElementById('text').innerText = node.text;
+            
+            const optionsEl = document.getElementById('options');
+            optionsEl.innerHTML = '';
+
+            node.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option.text;
+                button.classList.add('btn');
+                
+                if (option.nextNode === 'start') {
+                    button.classList.add('btn-restart');
+                }
+
+                button.onclick = () => showNode(option.nextNode);
+                optionsEl.appendChild(button);
+            });
+        }
+
+        showNode('start');
+    </script>
+</body>
+</html>
