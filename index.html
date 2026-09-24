@@ -1,210 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoIA: O Futuro do Planeta</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Descubra como a inteligência artificial pode ajudar a proteger o meio ambiente e construir um futuro mais sustentável." />
+  <title>IA pelo Planeta | Tecnologia a favor da vida</title>
+  <style>
+    :root {
+      --ink: #15332c;
+      --muted: #60756e;
+      --green: #1f7a5a;
+      --green-dark: #0d513d;
+      --lime: #b9df68;
+      --cream: #f5f7ef;
+      --white: #ffffff;
+      --line: #dfe9db;
+      --shadow: 0 20px 55px rgba(25, 70, 52, .12);
+    }
 
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 
-        .game-container {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            text-align: center;
-        }
+    header { background: rgba(245, 247, 239, .9); border-bottom: 1px solid rgba(223,233,219,.8); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); }
+    .nav { align-items: center; display: flex; justify-content: space-between; min-height: 76px; }
+    .brand { align-items: center; display: flex; font-weight: 800; gap: 10px; letter-spacing: -.03em; }
+    .brand-mark { align-items: center; background: var(--green); border-radius: 12px; color: white; display: flex; font-size: 1.35rem; height: 38px; justify-content: center; width: 38px; }
+    nav { display: flex; gap: 28px; }
+    nav a { color: var(--muted); font-size: .92rem; font-weight: 600; }
+    nav a:hover { color: var(--green); }
 
-        h1 {
-            color: #2ecc71;
-            margin-bottom: 10px;
-            font-size: 2rem;
-        }
+    .hero { overflow: hidden; padding: 94px 0 88px; position: relative; }
+    .hero::after { background: var(--lime); border-radius: 50%; content: ""; height: 480px; opacity: .35; position: absolute; right: -210px; top: -160px; width: 480px; z-index: -1; }
+    .hero-grid { align-items: center; display: grid; gap: 72px; grid-template-columns: 1.05fr .95fr; }
+    .eyebrow { color: var(--green); font-size: .78rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); letter-spacing: -.07em; line-height: .98; margin: 18px 0 25px; max-width: 690px; }
+    h1 em { color: var(--green); font-style: normal; }
+    .lead { color: var(--muted); font-size: 1.15rem; max-width: 570px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .button { border: 0; border-radius: 999px; cursor: pointer; display: inline-flex; font-weight: 750; gap: 9px; justify-content: center; padding: 14px 22px; transition: .2s ease; }
+    .button-primary { background: var(--green); color: white; box-shadow: 0 10px 25px rgba(31,122,90,.22); }
+    .button-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .button-ghost { background: transparent; border: 1px solid var(--line); color: var(--green-dark); }
+    .button-ghost:hover { background: white; }
+    .visual { background: linear-gradient(145deg, #d9edb7, #6db889); border-radius: 42px; min-height: 410px; overflow: hidden; position: relative; box-shadow: var(--shadow); }
+    .visual::before { background: rgba(255,255,255,.28); border-radius: 50%; content: ""; height: 280px; left: -70px; position: absolute; top: 46px; width: 280px; }
+    .visual::after { background: #286d51; border-radius: 50% 50% 0 0; bottom: 0; content: ""; height: 150px; left: -10%; position: absolute; transform: rotate(-7deg); width: 120%; }
+    .orb { align-items: center; background: #fff; border: 14px solid rgba(255,255,255,.45); border-radius: 50%; color: var(--green); display: flex; font-size: 5rem; height: 190px; justify-content: center; left: 50%; position: absolute; top: 75px; transform: translateX(-50%); width: 190px; z-index: 2; }
+    .visual-label { bottom: 35px; color: white; font-size: 1.05rem; font-weight: 750; left: 0; position: absolute; text-align: center; width: 100%; z-index: 3; }
 
-        .subtitle {
-            font-size: 0.9rem;
-            color: #bdc3c7;
-            margin-bottom: 25px;
-        }
+    .stats { background: var(--green-dark); color: white; padding: 27px 0; }
+    .stats-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); text-align: center; }
+    .stat strong { display: block; font-size: 1.8rem; }
+    .stat span { color: #c7dfd0; font-size: .88rem; }
+    section { padding: 105px 0; }
+    .section-heading { margin-bottom: 42px; max-width: 640px; }
+    .section-heading h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.055em; line-height: 1.05; margin: 12px 0; }
+    .section-heading p { color: var(--muted); }
+    .cards { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 28px; transition: .2s ease; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
+    .card-icon { align-items: center; background: #e8f3d9; border-radius: 14px; display: flex; font-size: 1.55rem; height: 52px; justify-content: center; margin-bottom: 22px; width: 52px; }
+    .card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: .95rem; }
 
-        .node-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #f1c40f;
-        }
+    .how { background: #eaf2df; }
+    .steps { display: grid; gap: 26px; grid-template-columns: repeat(3, 1fr); }
+    .step { display: flex; gap: 17px; }
+    .number { align-items: center; background: var(--green); border-radius: 50%; color: white; display: flex; flex: 0 0 38px; font-weight: 800; height: 38px; justify-content: center; }
+    .step h3 { margin-bottom: 7px; }
+    .step p { color: var(--muted); font-size: .93rem; }
 
-        .node-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #ecf0f1;
-        }
+    .simulator { align-items: center; background: var(--green-dark); border-radius: 30px; color: white; display: grid; gap: 45px; grid-template-columns: 1fr 1fr; padding: 48px; }
+    .simulator h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.05em; line-height: 1.05; margin: 12px 0; }
+    .simulator p { color: #c7dfd0; }
+    .simulator .eyebrow { color: var(--lime); }
+    .choices { display: grid; gap: 11px; }
+    .choice { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; color: white; cursor: pointer; padding: 15px 18px; text-align: left; transition: .2s; }
+    .choice:hover, .choice.active { background: var(--lime); color: var(--ink); }
+    #result { color: var(--lime); font-size: .94rem; font-weight: 700; margin-top: 17px; min-height: 25px; }
 
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .btn:hover {
-            background: #2ecc71;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-        }
-
-        .btn-restart {
-            background: #e67e22;
-            margin-top: 20px;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .btn-restart:hover {
-            background: #f39c12;
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
-        }
-    </style>
+    footer { background: #0a3b2c; color: white; padding: 35px 0; }
+    .footer-content { align-items: center; display: flex; justify-content: space-between; }
+    footer small { color: #b5d0c0; }
+    .back-top { color: var(--lime); font-size: .9rem; font-weight: 700; }
+    @media (max-width: 800px) { nav { display: none; } .hero { padding: 65px 0; } .hero-grid, .simulator { grid-template-columns: 1fr; } .visual { min-height: 330px; } .cards, .steps { grid-template-columns: 1fr; } section { padding: 70px 0; } .stats-grid { grid-template-columns: 1fr; gap: 13px; } .simulator { padding: 30px 24px; } }
+    @media (max-width: 480px) { .container { width: min(100% - 28px, 1120px); } h1 { font-size: 3.25rem; } .hero-actions .button { width: 100%; } .footer-content { align-items: flex-start; flex-direction: column; gap: 14px; } }
+  </style>
 </head>
 <body>
-
-    <div class="game-container">
-        <h1>EcoIA: Guardiões do Planeta</h1>
-        <p class="subtitle">Escolha o caminho tecnológico para salvar a Terra usando Inteligência Artificial</p>
-        
-        <div id="game-content">
-            <h2 id="title" class="node-title">Carregando...</h2>
-            <p id="text" class="node-text"></p>
-            <div id="options" class="options-grid"></div>
-        </div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio"><span class="brand-mark">✦</span> IA pelo Planeta</a>
+      <nav aria-label="Navegação principal"><a href="#solucoes">Soluções</a><a href="#como-funciona">Como funciona</a><a href="#simulador">Explore</a></nav>
     </div>
+  </header>
 
-    <script>
-        const story = {
-            start: {
-                title: "O Desafio Global",
-                text: "Você assumiu o comando da Aliança de Tecnologia Ambiental. Vários ecossistemas estão em estado de emergência. Onde você vai aplicar o poder da IA primeiro?",
-                options: [
-                    { text: "🌲 Proteger as Florestas Tropicais", nextNode: "florestas" },
-                    { text: "🌊 Limpar e Monitorar os Oceanos", nextNode: "oceanos" },
-                    { text: "🏙️ Otimizar Cidades e Energia", nextNode: "cidades" }
-                ]
-            },
-            
-            florestas: {
-                title: "Emergência nas Florestas",
-                text: "A Amazônia enfrenta desmatamento ilegal e riscos de incêndios. Como a IA pode atuar?",
-                options: [
-                    { text: "📡 IA + Imagens de Satélite (Prevenção)", nextNode: "florestas_satelite" },
-                    { text: "🚁 Drones Autônomos com IA (Reflorestamento)", nextNode: "florestas_drones" }
-                ]
-            },
-            florestas_satelite: {
-                title: "Sucesso: Visão Computacional!",
-                text: "Sua IA analisa dados de satélite em tempo real, prevendo áreas de risco de queimadas e desmatamento ilegal antes mesmo que aconteçam. Milhares de hectares foram salvos! 🌳",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            },
-            florestas_drones: {
-                title: "Sucesso: Bio-Drones em Ação!",
-                text: "Você lançou drones guiados por IA que mapeiam o solo e plantam até 40.000 sementes por dia nas áreas devastadas! 🍃",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            },
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Tecnologia com propósito</p>
+          <h1>Inteligência para cuidar da <em>vida.</em></h1>
+          <p class="lead">A inteligência artificial pode transformar dados em decisões melhores para proteger florestas, oceanos, cidades e o futuro que compartilhamos.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#solucoes">Descobrir soluções <span>→</span></a><a class="button button-ghost" href="#simulador">Ver na prática</a></div>
+        </div>
+        <div class="visual" aria-label="Ilustração de um planeta protegido por tecnologia"><div class="orb">🌍</div><div class="visual-label">Dados que inspiram ações reais</div></div>
+      </div>
+    </section>
 
-            oceanos: {
-                title: "Crise nos Oceanos",
-                text: "Toneladas de plástico flutuam no mar e a vida marinha está em perigo. Qual tecnologia adotar?",
-                options: [
-                    { text: "🛰️ IA para Mapeamento de Lixo Marinho", nextNode: "oceanos_lixo" },
-                    { text: "🤖 Submarinos autônomos para restauração de corais", nextNode: "oceanos_corais" }
-                ]
-            },
-            oceanos_lixo: {
-                title: "Sucesso: Oceanos Limpos!",
-                text: "A IA rastreou correntes marítimas e manchas de plástico, guiando navios recolhedores que retiraram toneladas de poluição dos oceanos! 🐋",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            },
-            oceanos_corais: {
-                title: "Sucesso: Restauração Marinha!",
-                text: "Robôs guiados por IA monitoraram a temperatura da água e cultivaram novas colônias de corais resistentes às mudanças climáticas! 🪸",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            },
+    <div class="stats"><div class="container stats-grid"><div class="stat"><strong>24/7</strong><span>monitoramento ambiental</span></div><div class="stat"><strong>+ dados</strong><span>para decisões mais precisas</span></div><div class="stat"><strong>1 futuro</strong><span>para construirmos juntos</span></div></div></div>
 
-            cidades: {
-                title: "Transição Urbana Sustentável",
-                text: "As grandes cidades consomem muita energia e geram altos níveis de poluição. Como intervir?",
-                options: [
-                    { text: "⚡ Smart Grids (Redes Elétricas Inteligentes)", nextNode: "cidades_grid" },
-                    { text: "♻️ IA para Otimização de Reciclagem", nextNode: "cidades_lixo" }
-                ]
-            },
-            cidades_grid: {
-                title: "Sucesso: Energia Limpa!",
-                text: "A IA equilibrou a demanda de energia com fontes renováveis (solar e eólica), reduzindo drasticamente as emissões de carbono! ☀️",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            },
-            cidades_lixo: {
-                title: "Sucesso: Economia Circular!",
-                text: "Braços robóticos com visão computacional aceleraram a triagem do lixo, aumentando a taxa de reciclagem da cidade em 90%! 📦",
-                options: [{ text: "🔄 Jogar Novamente", nextNode: "start" }]
-            }
-        };
+    <section id="solucoes"><div class="container"><div class="section-heading"><p class="eyebrow">Onde a IA atua</p><h2>Pequenos sinais. Grandes transformações.</h2><p>Ao reconhecer padrões e antecipar riscos, a IA ajuda pessoas e organizações a agir antes que seja tarde.</p></div><div class="cards">
+      <article class="card"><div class="card-icon">🌳</div><h3>Florestas vivas</h3><p>Imagens de satélite identificam desmatamento e focos de incêndio, apoiando a fiscalização e a restauração de áreas degradadas.</p></article>
+      <article class="card"><div class="card-icon">🌊</div><h3>Oceanos protegidos</h3><p>Sistemas inteligentes rastreiam plástico, acompanham a saúde dos corais e ajudam a preservar a biodiversidade marinha.</p></article>
+      <article class="card"><div class="card-icon">⚡</div><h3>Cidades eficientes</h3><p>Redes inteligentes equilibram o consumo de energia, melhoram o transporte e reduzem desperdícios e emissões.</p></article>
+    </div></div></section>
 
-        function showNode(nodeKey) {
-            const node = story[nodeKey];
-            document.getElementById('title').innerText = node.title;
-            document.getElementById('text').innerText = node.text;
-            
-            const optionsEl = document.getElementById('options');
-            optionsEl.innerHTML = '';
+    <section class="how" id="como-funciona"><div class="container"><div class="section-heading"><p class="eyebrow">Do dado à ação</p><h2>Como essa mudança acontece?</h2></div><div class="steps"><div class="step"><div class="number">1</div><div><h3>Observar</h3><p>Sensores, satélites e comunidades coletam sinais do ambiente em tempo real.</p></div></div><div class="step"><div class="number">2</div><div><h3>Entender</h3><p>Algoritmos organizam os dados e encontram padrões que passariam despercebidos.</p></div></div><div class="step"><div class="number">3</div><div><h3>Agir</h3><p>Especialistas e cidadãos usam essas informações para tomar decisões responsáveis.</p></div></div></div></div></section>
 
-            node.options.forEach(option => {
-                const button = document.createElement('button');
-                button.innerText = option.text;
-                button.classList.add('btn');
-                
-                if (option.nextNode === 'start') {
-                    button.classList.add('btn-restart');
-                }
+    <section id="simulador"><div class="container"><div class="simulator"><div><p class="eyebrow">Escolha um desafio</p><h2>Qual problema você quer ajudar a resolver?</h2><p>Explore um exemplo de como a IA pode apoiar uma solução sustentável.</p><p id="result" aria-live="polite"></p></div><div class="choices"><button class="choice" data-result="A IA pode prever focos de incêndio e orientar equipes de prevenção. 🔥">Prevenir incêndios florestais</button><button class="choice" data-result="A IA pode mapear o lixo e indicar os pontos prioritários para limpeza. 🐋">Reduzir o lixo nos oceanos</button><button class="choice" data-result="A IA pode equilibrar fontes renováveis e diminuir o desperdício de energia. ☀️">Economizar energia nas cidades</button></div></div></div></section>
+  </main>
 
-                button.onclick = () => showNode(option.nextNode);
-                optionsEl.appendChild(button);
-            });
-        }
-
-        showNode('start');
-    </script>
+  <footer><div class="container footer-content"><small>© 2024 IA pelo Planeta · Tecnologia a favor da vida</small><a class="back-top" href="#inicio">Voltar ao topo ↑</a></div></footer>
+  <script>
+    const result = document.getElementById('result');
+    document.querySelectorAll('.choice').forEach((button) => button.addEventListener('click', () => {
+      document.querySelectorAll('.choice').forEach((item) => item.classList.remove('active'));
+      button.classList.add('active');
+      result.textContent = button.dataset.result;
+    }));
+  </script>
 </body>
 </html>
